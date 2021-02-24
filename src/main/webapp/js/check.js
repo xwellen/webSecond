@@ -74,10 +74,16 @@ function sendPOST(){
         console.log("x: " + x + "\n" + "y: " + y + "\n" + "r: " + r);
         let req = new XMLHttpRequest();
         let queryData = "X=" + x + "&Y=" + y + "&R=" + r;
-        req.open("POST", "/control")
+        req.open("POST", "/webSecond-1.0/control")
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         req.send(queryData);
-        return true;
+        req.onload = function () {
+            let tableWindow = window.open("/webSecond-1.0/control", "_parent");
+            tableWindow.document.write(this.responseText);
+            tableWindow.focus();
+            console.log(tableWindow.location);
+            tableWindow.document.close();
+        }
     }
-    return false;
+
 }

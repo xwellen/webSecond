@@ -10,7 +10,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>lab02</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" type="image/png" href="img/favicon.png">
 </head>
 <body>
@@ -53,7 +53,7 @@
             <input type="checkbox" name="r5" id="r5" onchange="clickR()">
             <label>5</label><br>
 
-        <input type="button" id="sbutton" value="Проверка" onclick="return sendPOST();">
+        <input type="button" id="sbutton" value="Проверка" onclick="sendPOST();">
     </div>
 </div>
 <script src="js/check.js"></script>
