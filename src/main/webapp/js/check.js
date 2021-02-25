@@ -43,6 +43,7 @@ function checkR() {
 
 function clickR(){
     document.getElementById("NoRChoosed").innerText = "";
+
 }
 
 function validator() {
@@ -74,7 +75,7 @@ function sendPOST(){
         console.log("x: " + x + "\n" + "y: " + y + "\n" + "r: " + r);
         let req = new XMLHttpRequest();
         let queryData = "X=" + x + "&Y=" + y + "&R=" + r;
-        req.open("POST", "/webSecond-1.0/control")
+        req.open("POST", "/webSecond-1.0/control");
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         req.send(queryData);
         req.onload = function () {

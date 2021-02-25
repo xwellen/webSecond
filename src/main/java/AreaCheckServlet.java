@@ -17,14 +17,17 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     private boolean isValid(double x, double y, double r){
-        return (x>=-4 && x<=4) && (y>=-3 && y<=5) && (r>=1 && r<=5);
+        return (x>=-7 && x<=7) && (y>=-7 && y<=7) && (r>=1 && r<=5);
     }
 
     private String check(double x, double y, double r){
         if (isValid(x, y, r)){
-            return "IN"; //TODO проверка условий
+            if (x>0 && y>0 && y<(-2)*x+r) return "IN";
+            if (x<0 && y>0) return "OUT";
+            if (x<0 && y<0 && x>-r && y>-r) return "IN";
+            if (x>0 && y<0 && x*x+y*y<r*r/4) return "IN";
         }
-        else return "OUT";
+        return "OUT";
     }
 
     private String print_response(double x, double y, double r){

@@ -5,7 +5,13 @@
   Time: 17:01
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="container.ResultRow" %>
+<%@ page import="container.ResultArray" %>
+<%@ page import="java.util.List" %>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,15 +20,19 @@
     <link rel="icon" type="image/png" href="img/favicon.png">
 </head>
 <body>
+
 <div class="head">
     <div class="inherit-wrap"><p>Лабораторная работа №2</p></div>
     <p>Убоженко Сергей Дмитриевич P3212</p>
     <p>Вариант 53477</p>
 </div>
 <div class="stage">
-    <img src="img/area.png" alt="area.png" />
+    <canvas id="imageCanvas">
+        <img src="img/area.png" alt="area.png" id="area"/>
+    </canvas>
     <div class="form">
-            <label>Введите X</label><br>
+            <br>
+            <label>Введите X</label>
             <p id="whatX"></p>
             <div class="xButtons">
                 <input type="button" id="x1" value="-4" onclick="checkX()">
@@ -56,6 +66,42 @@
         <input type="button" id="sbutton" value="Проверка" onclick="sendPOST();">
     </div>
 </div>
+
+<div class="resultTable">
+    <table>
+        <tr>
+            <th>X_value</th>
+            <th>Y_value</th>
+            <th>R_value</th>
+            <th>Result</th>
+        </tr>
+        <%
+                ResultArray resultArray = (ResultArray) request.getServletContext().getAttribute("resultArray");
+                if (resultArray != null) {
+                    for (ResultRow resultRow : resultArray.getResultRows()) {
+            %>
+        <tr>
+            <td>
+                <%=resultRow.getxCell() %>
+            </td>
+            <td>
+                <%=resultRow.getyCell() %>
+            </td>
+            <td>
+                <%=resultRow.getrCell() %>
+            </td>
+            <td>
+                <%=resultRow.getResultCell() %>
+            </td>
+        </tr>
+        <%      }
+                }
+            %>
+
+    </table>
+</div>
+
 <script src="js/check.js"></script>
+<script src="js/canvas.js"></script>
 </body>
 </html>
